@@ -1,24 +1,13 @@
-// models/User.js
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const UserSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, "Please provide a name"],
-      maxlength: [60, "Name cannot be more than 60 characters"],
-    },
-    email: {
-      type: String,
-      required: [true, "Please provide an email"],
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: [true, "Please provide a password"],
-    },
-  },
-  { timestamps: true }
-);
+const UserSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  password: String,
+  age: Number,
+  gender: String,
+  interests: [String],
+  onboardingComplete: { type: Boolean, default: false }
+});
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.User || mongoose.model('User', UserSchema);
